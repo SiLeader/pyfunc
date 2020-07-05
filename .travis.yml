@@ -1,7 +1,7 @@
 language: c++
 
 script:
-  - cmake . && make && make test
+  - cmake . && make && test/pyfunc_test
 
 addons:
   apt:
