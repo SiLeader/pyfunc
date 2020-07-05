@@ -41,10 +41,10 @@ class EnumerateIterator {
 
  public:
   ::std::tuple<Counter, value_type&> operator*() {
-    return {counter_, *iterator_};
+    return ::std::tuple<Counter, value_type&>{counter_, *iterator_};
   }
   ::std::tuple<Counter, const value_type&> operator*() const {
-    return {counter_, *iterator_};
+    return ::std::tuple<Counter, const value_type&>{counter_, *iterator_};
   }
 
  public:
