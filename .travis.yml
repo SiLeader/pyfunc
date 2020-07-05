@@ -1,0 +1,9 @@
+language: c++
+
+script:
+  - cmake . && make && make test
+
+addons:
+  apt:
+    packages:
+      - cmake
