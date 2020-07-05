@@ -8,7 +8,7 @@
 
 TEST(range, range10) {
   int counter = 0;
-  for (const auto i : pyfunc::range(10)) {
+  for (const auto i : ::pyfunc::range(10)) {
     EXPECT_EQ(counter, i);
     counter++;
   }
@@ -17,7 +17,7 @@ TEST(range, range10) {
 
 TEST(range, range1_10) {
   int counter = 1;
-  for (const auto i : pyfunc::range(1, 10)) {
+  for (const auto i : ::pyfunc::range(1, 10)) {
     EXPECT_EQ(counter, i);
     counter++;
   }
@@ -26,7 +26,7 @@ TEST(range, range1_10) {
 
 TEST(range, range1_11_2) {
   int counter = 1;
-  for (const auto i : pyfunc::range(1, 11, 2)) {
+  for (const auto i : ::pyfunc::range(1, 11, 2)) {
     EXPECT_EQ(counter, i);
     counter += 2;
   }
@@ -35,7 +35,7 @@ TEST(range, range1_11_2) {
 
 TEST(range, range1_10_dec) {
   int counter = 10;
-  for (const auto i : pyfunc::range(10, 1, -1)) {
+  for (const auto i : ::pyfunc::range(10, 1, -1)) {
     EXPECT_EQ(counter, i);
     counter--;
   }

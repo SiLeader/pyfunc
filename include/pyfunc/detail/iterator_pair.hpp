@@ -6,7 +6,8 @@
 
 #include <utility>
 
-namespace pyfunc::detail {
+namespace pyfunc {
+namespace detail {
 
 template <class FirstIterator, class LastIterator>
 class IteratorPair {
@@ -23,4 +24,5 @@ class IteratorPair {
   LastIterator end() const { return last_; }
 };
 
-}  // namespace pyfunc::detail
+}  // namespace detail
+}  // namespace pyfunc

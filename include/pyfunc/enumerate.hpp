@@ -14,14 +14,14 @@ namespace pyfunc {
 
 namespace detail {
 
-template <class Iterator, class Counter = std::size_t>
+template <class Iterator, class Counter = ::std::size_t>
 class EnumerateIterator {
  public:
   using defference_type =
-      typename std::iterator_traits<Iterator>::difference_type;
-  using value_type = typename std::iterator_traits<Iterator>::value_type;
-  using pointer = typename std::iterator_traits<Iterator>::pointer;
-  using reference = typename std::iterator_traits<Iterator>::reference;
+      typename ::std::iterator_traits<Iterator>::difference_type;
+  using value_type = typename ::std::iterator_traits<Iterator>::value_type;
+  using pointer = typename ::std::iterator_traits<Iterator>::pointer;
+  using reference = typename ::std::iterator_traits<Iterator>::reference;
 
  private:
   Iterator iterator_;
@@ -29,9 +29,9 @@ class EnumerateIterator {
 
  public:
   EnumerateIterator(Iterator itr, Counter counter) noexcept
-      : iterator_(std::move(itr)), counter_(counter) {}
+      : iterator_(::std::move(itr)), counter_(counter) {}
   explicit EnumerateIterator(Iterator itr) noexcept
-      : EnumerateIterator(std::move(itr), 0) {}
+      : EnumerateIterator(::std::move(itr), 0) {}
 
   EnumerateIterator(const EnumerateIterator&) = default;
   EnumerateIterator(EnumerateIterator&&) noexcept = default;
@@ -40,10 +40,10 @@ class EnumerateIterator {
   EnumerateIterator& operator=(EnumerateIterator&&) noexcept = default;
 
  public:
-  std::tuple<Counter, value_type&> operator*() {
+  ::std::tuple<Counter, value_type&> operator*() {
     return {counter_, *iterator_};
   }
-  std::tuple<Counter, const value_type&> operator*() const {
+  ::std::tuple<Counter, const value_type&> operator*() const {
     return {counter_, *iterator_};
   }
 
@@ -72,12 +72,15 @@ class EnumerateIterator {
 
 }  // namespace detail
 
-template <class Container, class Counter = std::size_t>
+template <class Container, class Counter = ::std::size_t>
 auto enumerate(Container&& container, Counter start = 0)
-    -> detail::IteratorPair<
-        detail::EnumerateIterator<decltype(detail::begin(container))>,
-        detail::EnumerateIterator<decltype(detail::end(container))>> {
-  return {{detail::begin(container), start}, {detail::end(container), start}};
+    -> ::pyfunc::detail::IteratorPair<
+        ::pyfunc::detail::EnumerateIterator<
+            decltype(::pyfunc::detail::begin(container))>,
+        ::pyfunc::detail::EnumerateIterator<
+            decltype(::pyfunc::detail::end(container))>> {
+  return {{::pyfunc::detail::begin(container), start},
+          {::pyfunc::detail::end(container), start}};
 }
 
 }  // namespace pyfunc
